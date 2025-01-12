@@ -10,6 +10,7 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: '**', redirectTo: '' }, 
   { path: 'post/:id', component: PostDetailsComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'create-post', component: CreatePostComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
