@@ -1,0 +1,11 @@
+<section>
+    <h1>Recent Posts</h1>
+    <div *ngFor="let post of posts">
+      <article>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.description }}</p>
+        <a [routerLink]="['/post', post.id]">Read More</a>
+      </article>
+    </div>
+  </section>
+  

@@ -1,0 +1,7 @@
+<form (submit)="createPost()">
+    <input type="text" placeholder="Title" [(ngModel)]="post.title" name="title" required />
+    <textarea placeholder="Description" [(ngModel)]="post.description" name="description" required></textarea>
+    <textarea placeholder="Content" [(ngModel)]="post.content" name="content" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  

@@ -1,0 +1,11 @@
+<article>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <section>
+      <h2>Comments</h2>
+      <div *ngFor="let comment of comments">
+        <p>{{ comment.text }}</p>
+      </div>
+    </section>
+  </article>
+  
