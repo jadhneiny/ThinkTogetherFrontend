@@ -1,11 +1,56 @@
-<article>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    <section>
-      <h2>Comments</h2>
-      <div *ngFor="let comment of comments">
-        <p>{{ comment.text }}</p>
+<!-- Show loading only if post is null -->
+<div *ngIf="isLoading">Loading post details...</div>
+
+<article class="post-details" *ngIf="!isLoading && post">
+  <!-- Post Content -->
+  <header>
+    <h1>{{ post.Title }}</h1>
+    <p class="post-meta">Published on {{ post.CreatedAt | date:'medium' }}</p>
+  </header>
+
+  <section class="post-content">
+    <p>{{ post.Description }}</p>
+
+    <!-- Optional: Code Snippet -->
+    <pre *ngIf="post.CodeSnippet">
+      <code>{{ post.CodeSnippet }}</code>
+    </pre>
+
+    <!-- Optional: Link -->
+    <a *ngIf="post.Link" [href]="post.Link" target="_blank" rel="noopener noreferrer">
+      Read more
+    </a>
+  </section>
+
+  <!-- Post Metadata -->
+  <section class="post-stats">
+    <span>👍 {{ post.Upvotes }}</span>
+    <span>👎 {{ post.Downvotes }}</span>
+    <span>🔗 {{ post.ShareCount }} Shares</span>
+  </section>
+
+  <section class="comments">
+    <h2>Comments</h2>
+  
+    <div *ngIf="comments.length > 0; else noComments">
+      <div *ngFor="let comment of comments" class="comment">
+        <p>{{ comment.content }}</p>
+        
+        <!-- Show mentioned user if available -->
+        <p *ngIf="comment.mentionedUserId">Mentioned User ID: {{ comment.mentionedUserId }}</p>
+  
+        <!-- Author and Full Timestamp -->
+        <small>
+          — {{ comment.author }} on {{ comment.createdAt | date:'fullDate' }} at {{ comment.createdAt | date:'shortTime' }}
+        </small>
+  
+        <!-- Optional: Flagged Comment Indicator -->
+        <p *ngIf="comment.flagged">⚠️ This comment has been flagged.</p>
       </div>
-    </section>
-  </article>
+    </div>
+  
+    <ng-template #noComments>
+      <p>No comments yet. Be the first to comment!</p>
+    </ng-template>
+  </section>
   

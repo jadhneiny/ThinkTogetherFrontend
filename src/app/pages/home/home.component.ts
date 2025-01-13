@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { FooterComponent } from "../../components/footer/footer.component";
 import { HeaderComponent } from "../../components/header/header.component";
 import { RouterModule } from '@angular/router';

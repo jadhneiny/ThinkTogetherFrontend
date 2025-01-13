@@ -16,6 +16,14 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/posts/${id}`);
   }
 
+  getCommentsByPostId(postId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/posts/${postId}/comments`);
+  }
+
+  getUserById(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users/${userId}`);
+  }  
+
   createPost(postData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/posts`, postData);
   }
