@@ -1,1 +1,90 @@
-<p>register works!</p>
+<div class="register-container">
+    <h2>Register</h2>
+  
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="registerData.name"
+          required
+          placeholder="Enter your full name"
+        />
+      </div>
+  
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="registerData.username"
+          required
+          placeholder="Choose a username"
+        />
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="registerData.email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
+  
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="registerData.password"
+          required
+          minlength="6"
+          placeholder="Create a password"
+        />
+      </div>
+  
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          [(ngModel)]="registerData.confirmPassword"
+          required
+          placeholder="Confirm your password"
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="registerForm.invalid || isLoading">
+        {{ isLoading ? 'Registering...' : 'Register' }}
+      </button>
+  
+      <!-- Success & Error Messages -->
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </form>
+  
+    <!-- Link to Login -->
+    <div class="extra-links">
+      <a routerLink="/login">Already have an account? Login here.</a>
+    </div>
+  </div>
+  

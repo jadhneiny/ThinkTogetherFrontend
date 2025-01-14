@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -19,20 +18,32 @@ export class LoginComponent {
   };
 
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  login() {
+  login(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+
     this.apiService.login(this.loginData).subscribe({
       next: (response) => {
         console.log('Login successful:', response);
-        // Example: Save token to local storage
+
+        // Save token to localStorage (for session management)
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/']); // Redirect to Home
+        localStorage.setItem('userId', response.userId);
+
+        // Redirect to the home page
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Login failed:', error);
-        this.errorMessage = 'Invalid email or password.';
+        this.errorMessage = 'Invalid email or password. Please try again.';
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
       }
     });
   }

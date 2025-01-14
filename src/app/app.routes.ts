@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
+import { RegisterComponent } from './pages/register/register.component';
 // import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
@@ -12,6 +13,8 @@ export const routes: Routes = [
 
   // Login Route
   { path: 'login', component: LoginComponent },
+
+  { path: 'register', component: RegisterComponent },
 
   // Profile Page (User's profile)
   { path: 'profile', component: UserProfileComponent },

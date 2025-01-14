@@ -1,39 +1,48 @@
 <div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="login()" #loginForm="ngForm">
-      <div>
-        <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          [(ngModel)]="loginData.email"
-          required
-        />
-      </div>
-  
-      <div>
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          [(ngModel)]="loginData.password"
-          required
-        />
-      </div>
-  
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  
-      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-    </form>
+  <h2>Login</h2>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <!-- Email Input -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="loginData.email"
+        required
+        placeholder="Enter your email"
+      />
+    </div>
+
+    <!-- Password Input -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="loginData.password"
+        required
+        minlength="6"
+        placeholder="Enter your password"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="loginForm.invalid || isLoading">
+      {{ isLoading ? 'Logging in...' : 'Login' }}
+    </button>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
+
+  <!-- Links -->
+  <div class="extra-links">
+    <a routerLink="/register">Don't have an account? Register here.</a>
+    <!-- <a routerLink="/forgot-password">Forgot your password?</a> -->
   </div>
-  
-  <!-- <h2>Login Page</h2>
-<form>
-  <label>Email:</label>
-  <input type="email" placeholder="Enter your email" />
-  <label>Password:</label>
-  <input type="password" placeholder="Enter your password" />
-  <button type="submit">Login</button>
-</form> -->
+</div>
