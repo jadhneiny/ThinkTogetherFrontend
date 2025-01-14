@@ -9,7 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
   // Home Route
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
 
   // Login Route
   { path: 'login', component: LoginComponent },
@@ -29,5 +29,5 @@ export const routes: Routes = [
   // { path: 'not-found', component: NotFoundComponent },
 
   // Wildcard Route for Undefined Paths
-  { path: '**', redirectTo: 'not-found' }
+  { path: '**', component: HomeComponent },
 ];

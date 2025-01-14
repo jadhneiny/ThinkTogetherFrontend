@@ -35,7 +35,7 @@ export class LoginComponent {
         localStorage.setItem('userId', response.userId);
 
         // Redirect to the home page
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);  
       },
       error: (error) => {
         console.error('Login failed:', error);

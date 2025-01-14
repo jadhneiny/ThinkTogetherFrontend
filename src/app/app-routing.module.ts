@@ -9,8 +9,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: '**', redirectTo: '' }, 
+  { path: '', component: LoginComponent },
+  { path: '**', component: LoginComponent },
+  // { path: '**', redirectTo: '' }, 
+  { path: 'home', component: HomeComponent },
   { path: 'post/:id', component: PostDetailsComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'create-post', component: CreatePostComponent },
