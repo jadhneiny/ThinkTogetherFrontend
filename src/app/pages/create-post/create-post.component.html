@@ -1,7 +1,75 @@
-<form (submit)="createPost()">
-    <input type="text" placeholder="Title" [(ngModel)]="post.title" name="title" required />
-    <textarea placeholder="Description" [(ngModel)]="post.description" name="description" required></textarea>
-    <textarea placeholder="Content" [(ngModel)]="post.content" name="content" required></textarea>
-    <button type="submit">Submit</button>
+<div class="create-post-container">
+  <h2>Create New Post</h2>
+
+  <form (ngSubmit)="createPost()" #postForm="ngForm">
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="postData.title"
+        required
+        placeholder="Enter post title"
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="postData.description"
+        required
+        placeholder="Write a brief description..."
+      ></textarea>
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input
+        type="text"
+        id="category"
+        name="category"
+        [(ngModel)]="postData.categoryId"
+        required
+        placeholder="Enter category ID"
+      />
+    </div>
+
+    <!-- Optional Link -->
+    <div class="form-group">
+      <label for="link">Link (optional):</label>
+      <input
+        type="url"
+        id="link"
+        name="link"
+        [(ngModel)]="postData.link"
+        placeholder="Add a related link"
+      />
+    </div>
+
+    <!-- Optional Code Snippet -->
+    <div class="form-group">
+      <label for="codeSnippet">Code Snippet (optional):</label>
+      <textarea
+        id="codeSnippet"
+        name="codeSnippet"
+        [(ngModel)]="postData.codeSnippet"
+        placeholder="Paste your code here..."
+      ></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="postForm.invalid">Create Post</button>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
   </form>
-  
+</div>

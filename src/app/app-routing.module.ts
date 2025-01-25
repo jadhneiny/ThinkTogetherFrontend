@@ -7,22 +7,24 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
+import { AuthGuard } from './guards/auth.guard'; // Import the AuthGuard for protected routes
 
-const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: '**', component: LoginComponent },
-  // { path: '**', redirectTo: '' }, 
-  { path: 'home', component: HomeComponent },
-  { path: 'post/:id', component: PostDetailsComponent },
-  { path: 'profile', component: UserProfileComponent },
-  { path: 'create-post', component: CreatePostComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'search', component: SearchResultsComponent },
+export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect root to Login
+  { path: 'login', component: LoginComponent }, // Login route
+  { path: 'register', component: RegisterComponent }, // Registration route
+  { path: 'home', component: HomeComponent }, // Home route
+  { path: 'post/:id', component: PostDetailsComponent }, // Post details route
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] }, // Protected profile route
+  { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] }, // Protected create-post route
+  { path: 'search', component: SearchResultsComponent }, // Search results route
+  { path: '**', redirectTo: 'login' } // Redirect all unmatched routes to Login
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, onSameUrlNavigation: 'reload' })],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: false, onSameUrlNavigation: 'reload' }) // Removed useHash for cleaner URLs
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
