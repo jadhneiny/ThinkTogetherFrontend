@@ -52,5 +52,12 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/users/current`, {}, { headers });
 }
 
-  
+getUserPosts(userId: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/users/${userId}/posts`);
+}
+
+getUserComments(userId: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/users/${userId}/comments`);
+}
+
 }

@@ -1,1 +1,34 @@
-<p>user-profile works!</p>
+<div class="user-profile-container">
+    <h1>User Profile</h1>
+  
+    <div class="profile-section">
+      <h2>Profile Information</h2>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <button (click)="editProfile()">Edit Profile</button>
+    </div>
+  
+    <div class="posts-section">
+      <h2>Your Posts</h2>
+      <ul>
+        <li *ngFor="let post of userPosts">
+          <a [routerLink]="['/post', post.id]">{{ post.title }}</a>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="comments-section">
+      <h2>Comment History</h2>
+      <ul>
+        <li *ngFor="let comment of userComments">
+          <p>{{ comment.content }}</p>
+          <small>On post: <a [routerLink]="['/post', comment.postId]">{{ comment.postTitle }}</a></small>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="upvotes-section">
+      <h2>Upvote Statistics</h2>
+      <p><strong>Total Upvotes:</strong> {{ user.upvotes }}</p>
+    </div>
+  </div>
