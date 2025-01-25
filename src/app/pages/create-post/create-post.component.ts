@@ -27,39 +27,14 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  // ngOnInit(): void {
-  //   // Ensure localStorage is accessed in a browser environment
-  //   if (typeof window !== 'undefined') {
-  //     const token = localStorage.getItem('token');
-  //     if (token) {
-  //       this.isLoggedIn = true;
-
-  //       // Fetch user data using the token
-  //       this.apiService.getCurrentUser().subscribe({
-  //         next: (user) => {
-  //           this.userId = user.Id;
-  //           console.log('User is logged in:', user);
-  //         },
-  //         error: (err) => {
-  //           console.error('Error fetching current user:', err);
-  //           this.isLoggedIn = false;
-  //           this.router.navigate(['/login']);
-  //         }
-  //       });
-  //     } else {
-  //       this.router.navigate(['/login']); // Redirect if not logged in
-  //     }
-  //   }
-  // }
-
-
   ngOnInit(): void {
     // Check if the user is logged in
     this.apiService.getCurrentUser().subscribe({
       next: (user) => {
+        console.log('User object:', user); // Log the user object to see its structure
         if (user) {
           this.isLoggedIn = true;
-          this.userId = user.id;
+          this.userId = user.Id; // Ensure this matches the actual property name in the user object
           console.log('User is logged in:', user);
         } else {
           this.isLoggedIn = false;
@@ -74,7 +49,6 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
-
   createPost(): void {
     if (!this.isLoggedIn || !this.userId) {
       this.errorMessage = 'You must be logged in to create a post.';
@@ -87,11 +61,13 @@ export class CreatePostComponent implements OnInit {
       userId: this.userId
     };
 
+    console.log('Creating post with data:', newPost);
+
     this.apiService.createPost(newPost).subscribe({
       next: () => {
         this.successMessage = 'Post created successfully!';
         console.log('Post created successfully.');
-        setTimeout(() => this.router.navigate(['/']), 2000); // Redirect to home after success
+        setTimeout(() => this.router.navigate(['/home']), 2000); // Redirect to home after success
       },
       error: (err) => {
         console.error('Error creating post:', err);
