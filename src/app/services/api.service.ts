@@ -60,4 +60,9 @@ getUserComments(userId: number): Observable<any> {
   return this.http.get(`${this.apiUrl}/users/${userId}/comments`);
 }
 
+updateUser(userId: number, userData: any): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.put(`${this.apiUrl}/users/${userId}`, userData, { headers });
+}
 }
