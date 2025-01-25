@@ -16,6 +16,7 @@ export class PostDetailsComponent implements OnInit {
   comments: any[] = [];
   newComment: any = { text: '', author: 'Anonymous', createdAt: new Date() };
   isLoading: boolean = true;
+  authorName: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,15 @@ export class PostDetailsComponent implements OnInit {
       next: (data: any) => {
         this.post = data;
         this.isLoading = false;
+
+                // Fetch the author details
+                this.apiService.getUserById(this.post.UserId).subscribe({
+                  next: (userData: any) => {
+                    this.authorName = userData.Name;
+                  },
+                  error: () => {
+                    console.error(`Failed to fetch user with ID ${this.post.UserId}`);
+                  }});
 
         // Fetch comments for the post
         this.apiService.getCommentsByPostId(postId).subscribe({

@@ -5,7 +5,7 @@
   <!-- Post Content -->
   <header>
     <h1>{{ post.Title }}</h1>
-    <p class="post-meta">Published on {{ post.CreatedAt | date:'medium' }}</p>
+    <p class="post-meta">Published on {{ post.CreatedAt | date:'medium' }} by {{ authorName }}</p>
   </header>
 
   <section class="post-content">
