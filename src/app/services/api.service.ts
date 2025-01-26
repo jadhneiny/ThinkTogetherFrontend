@@ -74,4 +74,9 @@ updateUser(userId: number, userData: any): Observable<any> {
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   return this.http.put(`${this.apiUrl}/users/${userId}`, userData, { headers });
 }
+
+getCategories(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/categories`);
+}
+
 }
