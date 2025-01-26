@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -8,8 +8,24 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/posts`);
+  // getPosts(): Observable<any> {
+  //   return this.http.get(`${this.apiUrl}/posts`);
+  // }
+
+  getPosts(filters?: any): Observable<any[]> {
+    let params = new HttpParams();
+    if (filters) {
+      if (filters.searchQuery) {
+        params = params.set('search', filters.searchQuery);
+      }
+      if (filters.category) {
+        params = params.set('category', filters.category);
+      }
+      if (filters.sortBy) {
+        params = params.set('sortBy', filters.sortBy);
+      }
+    }
+    return this.http.get<any[]>(`${this.apiUrl}/posts`, { params });
   }
 
   getPostById(id: string): Observable<any> {
@@ -38,13 +54,6 @@ export class ApiService {
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
-
-  // getCurrentUser(): Observable<any> {
-  //   const token = localStorage.getItem('token');
-  //   console.log('Token:', token);
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  //   return this.http.get(`${this.apiUrl}/users/current`, { headers });
-  // }
 
   getCurrentUser(): Observable<any> {
     const token = localStorage.getItem('token');

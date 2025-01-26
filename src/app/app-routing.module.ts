@@ -6,7 +6,6 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { AuthGuard } from './guards/auth.guard'; // Import the AuthGuard for protected routes
 
 export const routes: Routes = [
@@ -17,7 +16,6 @@ export const routes: Routes = [
   { path: 'post/:id', component: PostDetailsComponent }, // Post details route
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] }, // Protected profile route
   { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] }, // Protected create-post route
-  { path: 'search', component: SearchResultsComponent }, // Search results route
   { path: '**', redirectTo: 'login' } // Redirect all unmatched routes to Login
 ];
 
