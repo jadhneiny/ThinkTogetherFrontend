@@ -1,25 +1,76 @@
+   /* General styling for the page */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #2A2D43;
+  color: #FCFFFD;
+  margin: 0;
+  padding: 0;
+}
+
+/* Search bar container */
 .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .search-bar input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-bar button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .search-bar button:hover {
-    background-color: #0056b3;
-  }
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: #42464D;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Input field styling */
+.search-bar input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #008DA3;
+  border-radius: 8px;
+  background-color: #2A2D43;
+  color: #FCFFFD;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Input hover and focus */
+.search-bar input:focus {
+  outline: none;
+  border-color: #00D1E0;
+}
+
+/* Button styling */
+.search-bar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background-color: #008DA3;
+  color: #FCFFFD;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover and click effects */
+.search-bar button:hover {
+  background-color: #00D1E0;
+}
+
+.search-bar button:active {
+  transform: scale(0.98);
+}
+
+/* Button icon styling */
+.search-bar .icon {
+  font-size: 1.2rem;
+}

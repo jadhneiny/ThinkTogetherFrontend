@@ -1,33 +1,39 @@
 <app-header></app-header>
 
 <main>
-  <section>
-    <h1>Recent Posts</h1>
+  <section class="posts-section">
+    <h1 class="section-title">Recent Posts</h1>
 
-    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    <app-search-bar class="search-bar" (search)="onSearch($event)"></app-search-bar>
 
     <div class="filters">
-      <label for="category">Category:</label>
-      <select id="category" [(ngModel)]="filters.category" (change)="onFilterChange()">
-        <option value="">All</option>
-        <option *ngFor="let category of categories" [value]="category.Id">{{ category.Name }}</option>
-      </select>
+      <div class="filter-group">
+        <label for="category">Category:</label>
+        <select id="category" [(ngModel)]="filters.category" (change)="onFilterChange()">
+          <option value="">All</option>
+          <option *ngFor="let category of categories" [value]="category.Id">{{ category.Name }}</option>
+        </select>
+      </div>
 
-      <label for="sortBy">Sort By:</label>
-      <select id="sortBy" [(ngModel)]="filters.sortBy" (change)="onFilterChange()">
-        <option value="">None</option>
-        <option value="popularity">Most Upvoted</option>
-        <option value="date">Newest</option>
-      </select>
+      <div class="filter-group">
+        <label for="sortBy">Sort By:</label>
+        <select id="sortBy" [(ngModel)]="filters.sortBy" (change)="onFilterChange()">
+          <option value="">None</option>
+          <option value="popularity">Most Upvoted</option>
+          <option value="date">Newest</option>
+        </select>
+      </div>
     </div>
 
-    <div *ngIf="isLoading">Loading posts...</div>
-    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="loading-message" *ngIf="isLoading">Loading posts...</div>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 
     <article *ngFor="let post of posts" class="post-card">
-      <h2>{{ post.Title }}</h2>
-      <p>{{ post.Description | slice:0:100 }}...</p>
-      <a [routerLink]="['/post', post.Id]" [attr.aria-label]="'Read more about ' + post.Title">Read More</a>
+      <div class="post-content">
+        <h2>{{ post.Title }}</h2>
+        <p>{{ post.Description | slice: 0: 100 }}...</p>
+        <a [routerLink]="['/post', post.Id]" [attr.aria-label]="'Read more about ' + post.Title">Read More</a>
+      </div>
     </article>
   </section>
 </main>

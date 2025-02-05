@@ -1,46 +1,124 @@
+   /* Container Styling */
 .user-profile-container {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 16px;
+  background-color: #2A2D43;
+  color: #FCFFFD;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Section Headers */
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #008DA3;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #FCFFFD;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #42464D;
+  padding-bottom: 5px;
+}
+
+/* Paragraphs and Labels */
+p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Buttons */
+button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  background-color: #008DA3;
+  color: #FCFFFD;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #006B86;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #42464D;
+  color: #FCFFFD;
+  outline: none;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 8px rgba(0, 141, 163, 0.8);
+}
+
+/* Lists */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 15px;
+  background-color: #42464D;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  color: #008DA3;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #00A9CC;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-profile-container {
     padding: 20px;
+    width: 90%;
   }
-  
-  .profile-section,
-  .posts-section,
-  .comments-section,
-  .upvotes-section {
-    margin-bottom: 20px;
-  }
-  
-  h1, h2 {
-    color: #333;
-  }
-  
+
   button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+    font-size: 0.9rem;
   }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
+}

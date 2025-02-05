@@ -1,4 +1,7 @@
-<div class="search-bar">
+  <div class="search-bar">
     <input type="text" [(ngModel)]="searchQuery" placeholder="Search posts..." />
-    <button (click)="onSearch()">Search</button>
-  </div>
+    <button (click)="onSearch()">
+        <span class="icon">&#128269;</span> <!-- Simple search icon -->
+        Search
+    </button>
+</div>
