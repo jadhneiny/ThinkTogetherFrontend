@@ -1,10 +1,12 @@
-/* Reset and Layout */
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Main Container for Post Details */
 .post-details {
   max-width: 800px;
   margin: 40px auto;
@@ -13,8 +15,12 @@
   color: #FCFFFD;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  font-family: 'Arial', sans-serif;
   line-height: 1.6;
+  transition: transform 0.3s ease;
+}
+
+.post-details:hover {
+  transform: translateY(-3px);
 }
 
 /* Header Styling */
@@ -28,14 +34,14 @@
 .post-details .post-meta {
   font-size: 0.9rem;
   text-align: center;
-  color: #888;
+  /* Using a semi-transparent white for a subtle look */
+  color: rgba(252, 255, 253, 0.7);
   margin-bottom: 20px;
 }
 
-/* Content Styling */
+/* Post Content Styling */
 .post-content p {
   font-size: 1.1rem;
-  color: #FCFFFD;
   margin-bottom: 20px;
 }
 
@@ -48,8 +54,10 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.95rem;
   border-left: 5px solid #008DA3;
+  margin-bottom: 20px;
 }
 
+/* Link Styling within Content */
 .post-content a {
   color: #008DA3;
   text-decoration: none;
@@ -64,7 +72,7 @@
   text-decoration: underline;
 }
 
-/* Post Stats */
+/* Post Stats Section */
 .post-stats {
   display: flex;
   justify-content: space-between;
@@ -72,6 +80,7 @@
   margin-top: 20px;
   background-color: #42464D;
   border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .post-stats span {
@@ -79,6 +88,7 @@
   align-items: center;
   font-size: 1rem;
   color: #FCFFFD;
+  transition: color 0.3s ease;
 }
 
 .post-stats span:hover {
@@ -97,36 +107,44 @@
   color: #008DA3;
 }
 
-/* Comment Styling */
+/* Individual Comment Styling */
 .comment {
   background-color: #42464D;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.comment:hover {
+  transform: translateX(3px);
 }
 
 .mentioned-user {
   font-style: italic;
   color: #00A9CC;
+  margin-top: 8px;
 }
 
 .comment small {
   display: block;
   margin-top: 8px;
   font-size: 0.85rem;
-  color: #CCCCCC;
+  /* Using a less-saturated white for metadata */
+  color: rgba(252, 255, 253, 0.8);
 }
 
 .flagged-comment {
   color: #FF8A00;
   font-weight: bold;
+  margin-top: 8px;
 }
 
 /* No Comments Message */
 .no-comments-message {
   text-align: center;
-  color: #888;
+  color: rgba(252, 255, 253, 0.7);
   font-style: italic;
   margin-top: 20px;
 }
@@ -135,10 +153,11 @@
 .loading-indicator {
   text-align: center;
   font-size: 1.2rem;
-  color: #888;
+  color: rgba(252, 255, 253, 0.7);
+  margin: 40px auto;
 }
 
-/* Responsive Design */
+/* Responsive Design Adjustments */
 @media (max-width: 600px) {
   .post-details {
     padding: 20px;
@@ -151,5 +170,6 @@
   .post-stats {
     flex-direction: column;
     gap: 10px;
+    align-items: center;
   }
 }

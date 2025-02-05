@@ -11,10 +11,15 @@
   margin: 120px auto;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   background-color: #2A2D43;
   color: #FCFFFD;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.register-container:hover {
+  transform: translateY(-3px);
 }
 
 /* Title */
@@ -45,7 +50,7 @@
   background-color: #42464D;
   color: #FCFFFD;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus {
@@ -65,11 +70,12 @@ button {
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #00A9CC;
+  transform: translateY(-2px);
 }
 
 button:disabled {
@@ -120,6 +126,7 @@ button:disabled {
   .register-container {
     width: 90%;
     padding: 20px;
+    margin: 60px auto;
   }
 
   .register-container h2 {

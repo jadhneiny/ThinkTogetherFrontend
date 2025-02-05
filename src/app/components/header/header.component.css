@@ -1,23 +1,24 @@
-   /* General header styling */
+/* Header Container */
 header {
   background-color: #42464D;
   padding: 15px 40px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-/* Navigation menu */
+/* Navigation Menu */
 nav {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-/* Link styling */
+/* Navigation Link Styling */
 nav a {
   font-size: 1.1rem;
   font-weight: 600;
@@ -25,13 +26,14 @@ nav a {
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover and focus effect for links */
+/* Hover & Focus Effects */
 nav a:hover {
   background-color: #008DA3;
   color: #2A2D43;
+  transform: scale(1.05);
 }
 
 nav a:focus {
@@ -40,7 +42,7 @@ nav a:focus {
   color: #2A2D43;
 }
 
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;

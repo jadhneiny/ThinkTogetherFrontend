@@ -15,6 +15,12 @@
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Title */
@@ -45,7 +51,7 @@
   background-color: #42464D;
   color: #FCFFFD;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus {
@@ -65,11 +71,12 @@ button {
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #00A9CC;
+  transform: translateY(-2px);
 }
 
 button:disabled {
@@ -87,12 +94,13 @@ button:disabled {
   border-radius: 8px;
   font-weight: bold;
   font-size: 0.95rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .secondary-button:hover {
   background-color: #008DA3;
   color: #FCFFFD;
+  transform: translateY(-2px);
 }
 
 /* Error Message */

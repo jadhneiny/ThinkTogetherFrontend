@@ -1,4 +1,10 @@
-   /* General styles */
+
+/* Reset some defaults */
+* {
+  box-sizing: border-box;
+}
+
+/* Body & Global Styles */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #2A2D43;
@@ -8,58 +14,71 @@ body {
   line-height: 1.6;
 }
 
-/* Main content area */
+/* Main content container */
 main {
-  padding: 40px;
+  padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Section title */
+/* Section Title */
 .section-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #008DA3;
   text-align: center;
 }
 
-/* Search bar styling */
+/* Search Bar: ensure it stays centered and spaced */
 .search-bar {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
-/* Filters container */
+/* Filters Container */
 .filters {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding: 15px;
   background-color: #42464D;
   border-radius: 10px;
 }
 
+/* Each filter group */
 .filter-group {
   display: flex;
   flex-direction: column;
+  min-width: 150px;
 }
 
-label {
+.filter-group label {
   font-weight: bold;
   margin-bottom: 5px;
+  color: #FCFFFD;
 }
 
-/* Input fields */
-select {
-  padding: 8px;
+/* Styled select inputs */
+.filter-group select {
+  padding: 8px 12px;
   border: 1px solid #008DA3;
   border-radius: 5px;
   background-color: #2A2D43;
   color: #FCFFFD;
   font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-/* Loading and error messages */
+.filter-group select:focus {
+  border-color: #00D1E0;
+}
+
+/* Loading & Error Messages */
 .loading-message,
 .error-message {
   text-align: center;
@@ -67,48 +86,66 @@ select {
   margin: 20px 0;
 }
 
-/* Post card */
+/* Post Card */
 .post-card {
-  display: flex;
-  flex-direction: column;
   background-color: #42464D;
   border-radius: 12px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
+/* Post Content */
 .post-content {
   padding: 20px;
 }
 
-.post-card h2 {
+.post-content h2 {
   font-size: 1.8rem;
-  color: #FCFFFD;
-  margin-bottom: 10px;
-}
-
-.post-card p {
-  font-size: 1rem;
   color: #FCFFFD;
   margin-bottom: 15px;
 }
 
-/* Post read more link */
-.post-card a {
+.post-content p {
+  font-size: 1rem;
+  color: #FCFFFD;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Read More Link */
+.post-content a {
   font-weight: bold;
   color: #008DA3;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.post-card a:hover {
+.post-content a:hover {
   color: #00D1E0;
   text-decoration: underline;
+}
+
+/* Responsive Tweaks */
+@media (min-width: 768px) {
+  /* Adjust filters for wider screens */
+  .filters {
+    justify-content: space-between;
+  }
+  
+  /* Optionally, if you want a horizontal card layout on larger screens */
+  .post-card {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .post-content {
+    flex: 1;
+  }
 }
