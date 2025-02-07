@@ -1,78 +1,33 @@
 <app-header></app-header>
-
 <div class="create-post-container">
-  <h2>Create New Post</h2>
-
-  <form (ngSubmit)="createPost()" #postForm="ngForm">
-    <!-- Title -->
+  <h2>Create a New Post</h2>
+  <form (ngSubmit)="createPost()">
     <div class="form-group">
       <label for="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        [(ngModel)]="postData.title"
-        required
-        placeholder="Enter post title"
-      />
+      <input type="text" id="title" [(ngModel)]="postData.title" name="title" required />
     </div>
-
-    <!-- Description -->
     <div class="form-group">
       <label for="description">Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        [(ngModel)]="postData.description"
-        required
-        placeholder="Write a brief description..."
-      ></textarea>
+      <textarea id="description" [(ngModel)]="postData.description" name="description" required></textarea>
     </div>
-
-    <!-- Category -->
-    <div class="form-group">
+    <div class="filter-group">
       <label for="category">Category:</label>
-      <input
-        type="text"
-        id="category"
-        name="category"
-        [(ngModel)]="postData.categoryId"
-        required
-        placeholder="Enter category ID"
-      />
+      <select id="category" name="category" [(ngModel)]="postData.categoryId" required>
+        <option *ngFor="let category of categories" [value]="category.Id">
+          {{ category.Name }}
+        </option>
+      </select>
     </div>
-
-    <!-- Optional Link -->
     <div class="form-group">
       <label for="link">Link (optional):</label>
-      <input
-        type="url"
-        id="link"
-        name="link"
-        [(ngModel)]="postData.link"
-        placeholder="Add a related link"
-      />
+      <input type="url" id="link" [(ngModel)]="postData.link" name="link" />
     </div>
-
-    <!-- Optional Code Snippet -->
     <div class="form-group">
       <label for="codeSnippet">Code Snippet (optional):</label>
-      <textarea
-        id="codeSnippet"
-        name="codeSnippet"
-        [(ngModel)]="postData.codeSnippet"
-        placeholder="Paste your code here..."
-      ></textarea>
+      <textarea id="codeSnippet" [(ngModel)]="postData.codeSnippet" name="codeSnippet"></textarea>
     </div>
-
-    <!-- Submit Button -->
-    <button type="submit" [disabled]="postForm.invalid">Create Post</button>
-
-    <!-- Error Message -->
+    <button type="submit" [disabled]="!postData.title || !postData.description || !postData.categoryId">Create Post</button>
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-
-    <!-- Success Message -->
     <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
   </form>
 </div>
-

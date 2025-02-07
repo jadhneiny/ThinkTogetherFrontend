@@ -21,6 +21,7 @@ export class CreatePostComponent implements OnInit {
     codeSnippet: ''
   };
 
+  categories: any[] = [];  // Store fetched categories
   errorMessage: string = '';
   successMessage: string = '';
   isLoggedIn: boolean = false;
@@ -32,20 +33,24 @@ export class CreatePostComponent implements OnInit {
     // Check if the user is logged in
     this.apiService.getCurrentUser().subscribe({
       next: (user) => {
-        console.log('User object:', user); // Log the user object to see its structure
         if (user) {
           this.isLoggedIn = true;
-          this.userId = user.Id; // Ensure this matches the actual property name in the user object
-          console.log('User is logged in:', user);
+          this.userId = user.Id;
         } else {
-          this.isLoggedIn = false;
           this.router.navigate(['/login']);
         }
       },
+      error: () => this.router.navigate(['/login'])
+    });
+
+    // Fetch categories from the API
+    this.apiService.getCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
       error: (err) => {
-        console.error('Error fetching current user:', err);
-        this.isLoggedIn = false;
-        this.router.navigate(['/login']);
+        console.error('Error fetching categories:', err);
+        this.errorMessage = 'Failed to load categories. Please try again.';
       }
     });
   }
@@ -53,27 +58,25 @@ export class CreatePostComponent implements OnInit {
   createPost(): void {
     if (!this.isLoggedIn || !this.userId) {
       this.errorMessage = 'You must be logged in to create a post.';
-      console.log('User is not logged in or userId is missing.');
       return;
     }
-
+  
     const newPost = {
       ...this.postData,
       userId: this.userId
     };
-
-    console.log('Creating post with data:', newPost);
-
+  
+    console.log('Sending post data:', newPost);
+  
     this.apiService.createPost(newPost).subscribe({
       next: () => {
         this.successMessage = 'Post created successfully!';
-        console.log('Post created successfully.');
-        setTimeout(() => this.router.navigate(['/home']), 2000); // Redirect to home after success
+        setTimeout(() => this.router.navigate(['/home']), 2000);
       },
       error: (err) => {
         console.error('Error creating post:', err);
         this.errorMessage = 'Failed to create the post. Please try again.';
       }
     });
-  }
+  }  
 }
